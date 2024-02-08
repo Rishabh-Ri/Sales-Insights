@@ -1,43 +1,10 @@
 ## Sales Insights Data Analysis Project
-### Data Analysis Using SQL
 
-1. Show all customer records
-
-    `SELECT * FROM customers;`
-
-1. Show total number of customers
-
-    `SELECT count(*) FROM customers;`
-
-1. Show transactions for Chennai market (market code for chennai is Mark001
-
-    `SELECT * FROM transactions where market_code='Mark001';`
-
-1. Show distrinct product codes that were sold in chennai
-
-    `SELECT distinct product_code FROM transactions where market_code='Mark001';`
-
-1. Show transactions where currency is US dollars
-
-    `SELECT * from transactions where currency="USD"`
-
-1. Show transactions in 2020 join by date table
-
-    `SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;`
-
-1. Show total revenue in year 2020,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";`
-	
-1. Show total revenue in year 2020, January Month,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");`
-
-1. Show total revenue in year 2020 in Chennai
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020
-and transactions.market_code="Mark001";`
-
-
+This project will give you a feel of how data analysis projects are executed in big companies in Power BI. 
+This would be perfect for anyone seeking career as a data analyst. 
+This case study is based on a computer hardware business which is facing challenges in dynamically changing market. 
+Sales director decides to invest in data analysis project and he would like to build Power BI dashboard that can give him real time sales insights.
+This project can guide the stakeholders to take data-driven decision-making.
+This project can grow the business by 20% in terms of profit and can reduce human efforts by 30%.
 
 
