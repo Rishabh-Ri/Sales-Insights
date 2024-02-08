@@ -1,0 +1,57 @@
+-- Analysis Over CUSTOMERS Table
+
+SELECT * FROM sales.customers;
+
+SELECT COUNT(*) FROM customers;
+
+-- Analysis Over TRANSACTIONS Table
+
+SELECT * FROM sales.transactions;
+USE sales;
+SELECT COUNT(*) FROM transactions;
+
+SELECT * FROM sales.transactions LIMIT 5;
+
+SELECT * FROM transactions WHERE market_code = 'Mark001';
+
+SELECT COUNT(*) FROM transactions WHERE market_code = 'Mark001';
+
+SELECT * FROM transactions WHERE currency = 'USD';
+
+-- JOIN BY order date
+SELECT transactions.* , date.* FROM transactions 
+INNER JOIN date 
+ON transactions.order_date = date.date;
+
+SELECT transactions.* , date.* FROM transactions 
+INNER JOIN date 
+ON transactions.order_date = date.date WHERE 
+date.year = 2020;
+
+-- TOTAL SALES BY YEAR
+SELECT SUM(transactions.sales_amount) FROM transactions 
+INNER JOIN date 
+ON transactions.order_date = date.date WHERE 
+date.year = 2019;
+
+SELECT SUM(t.sales_amount) AS ChennaiTotal FROM transactions AS t
+INNER JOIN date AS d
+ON t.order_date = d.date WHERE 
+d.year = 2020 AND t.market_code = "Mark001";
+
+--  DISTINCT PRODUCTS
+SELECT DISTINCT product_code FROM transactions WHERE market_code = "Mark001";
+
+SELECT * FROM transactions WHERE sales_amount <= 0;
+
+SELECT distinct(currency) FROM transactions;
+
+
+-- DAX Queries
+-- DATA TRANSFORMATION
+USE POWER QUERY IN POWER QUERY EDITOR
+= Table.SelectRows(sales_markets, each ([zone] <> ""))
+
+= Table.SelectRows(sales_transactions, each ([sales_amount] <> -1 and [sales_amount] <> 0))
+
+= Table.AddColumn(#"Filtered Rows", "norm_sales_amount", each if [currency] = "USD" then [sales_amount]*83.14 else [sales_amount])
